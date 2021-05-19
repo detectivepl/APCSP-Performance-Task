@@ -84,7 +84,7 @@ def testScreen():
     # qImgs[0].grid(row=1, column=1)
     answerBox = Entry(canvas, width=30, borderwidth=5)
     answerBox.grid(row=2, column=1)
-    enterButton = Button(canvas, text="Enter", borderwidth=5, command)
+    # enterButton = Button(canvas, text="Enter", borderwidth=5, command)
     
 
     
