@@ -55,7 +55,7 @@ def testScreen():
     top.grid(row=0, column=0, columnspan=3)
     #Back Button
     backButton = Button(canvas, text="Go back", borderwidth=5, command=lambda:[resetScreen(), introScreen()])
-    backButton.grid(row=0,column=0)
+    # backButton.grid(row=0,column=0)
     
     questions = ["car", "dog"]
     qImgs = []
@@ -65,11 +65,11 @@ def testScreen():
         tI.image = tempImg
         qImgs.append(tI)
     
-    print(qImgs)
+    # print(qImgs)
     
     while len(questions)>0:
         randVal = random.randint(len(questions))
-        print(randVal)
+        # print(randVal)
         if langSwitch:
             imgName = Label(canvas, text=questions[randVal])
             imgName.grid(row=0, column=1)
@@ -84,7 +84,7 @@ def testScreen():
     # qImgs[0].grid(row=1, column=1)
     answerBox = Entry(canvas, width=30, borderwidth=5)
     answerBox.grid(row=2, column=1)
-    # enterButton = Button(canvas, text="Enter", borderwidth=5, command)
+    enterButton = Button(canvas, text="Enter", borderwidth=5, command)
     
 
     
