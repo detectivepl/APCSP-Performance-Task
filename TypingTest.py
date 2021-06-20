@@ -1,16 +1,22 @@
+#tkinter module by Fredrik Lundh
 from tkinter import *
+#PIL module created by Fredrik Lundh
 from PIL import ImageTk, Image
 
+#Gets list from file
 sentenceListTXT = open("sentenceList.txt", "r")
 sentenceList = sentenceListTXT.read().split("\n")
 sentenceListTXT.close()
 
+#User score
 score = 0
 
+#Generates a question window depending on difficulty
 def generateQuestion(difficulty):
     newCanvas()
     global question
     global answerBox
+    #Using tkinter module created by Fredrik Lundh
     scoreCard = Label(canvas, text="Score: " + str(score), font="Times 12")
     answerBox = Entry(canvas, width=100, borderwidth=5)
     enterButton = Button(canvas, text="Enter", borderwidth=5, command=enterValue)
@@ -38,14 +44,17 @@ def generateQuestion(difficulty):
                 sentenceList.remove(i)
                 noMoreHardWords = False
                 break
+    #Using tkinter module created by Fredrik Lundh
     entryText = Label(canvas, text=question, font="Times 16")
     entryText.grid(row=1, column=1)
     if noMoreHardWords:
         resetScreen()
         winScreen()
 
+#Registers the user inputted sentence after clicking enter
 def enterValue():
     global ans
+    #Using tkinter module created by Fredrik Lundh
     ans = answerBox.get()
     resetScreen()
     if ans != question:
@@ -58,6 +67,7 @@ def enterValue():
         else:
             generateQuestion("hard")
 
+#Finds the type of error the user made
 def findError(lastQuestion, lastAnswer):
     if len(lastQuestion) > len(lastAnswer):
         return 1
@@ -65,16 +75,23 @@ def findError(lastQuestion, lastAnswer):
         return 2
     return 3
 
+#Creates a new canvas
 def newCanvas():
     global canvas
+    #Using tkinter module created by Fredrik Lundh
     canvas = Canvas(root)
     canvas.grid(row=0, column=0)
 
+#Destroys the current canvas
 def resetScreen():
+    #Using tkinter module created by Fredrik Lundh
     canvas.destroy()
 
+#Displays the winner's screen
 def winScreen():
     newCanvas()
+    #Using PIL module created by Fredrik Lundh
+    #Using tkinter module created by Fredrik Lundh
     rightV = ImageTk.PhotoImage(Image.open("right.png"))
     v1 = Label(canvas, image=rightV)
     v2 = Label(canvas, image=rightV)
@@ -87,8 +104,11 @@ def winScreen():
     winMessage.grid(row=0, column=1)
     endScore.grid(row=1, column=1)
 
+#Displays the loser's screen, the user's final score, and the user's error
 def loseScreen():
     newCanvas()
+    #Using PIL module created by Fredrik Lundh
+    #Using tkinter module created by Fredrik Lundh
     wrongX = ImageTk.PhotoImage(Image.open("wrong.png"))
     x1 = Label(canvas, image=wrongX)
     x2 = Label(canvas, image=wrongX)
@@ -107,7 +127,8 @@ def loseScreen():
         errorTypeMessage = "You wrote too much!"
     else:
         errorTypeMessage = "You made a typo!"
-
+        
+    #Using tkinter module created by Fredrik Lundh
     endMessage = Label(canvas, text=errorTypeMessage, font="Times 40")
     lastq = Label(box, text="Sentence: ", font="Times 16")
     lastQuestion = Label(box, text=question, font="Times 16")
@@ -122,10 +143,14 @@ def loseScreen():
     lastAnswer.grid(row=2, column=1)
     endScore.grid(row=3, column=1)
 
+#Starts the test with an easy question
 def startTest():
     generateQuestion("easy")
 
 
+#Main
+#Setting up the code to run
+#Using tkinter module created by Fredrik Lundh
 root = Tk()
 root.title("Typing Test")
 root.geometry("950x500")
